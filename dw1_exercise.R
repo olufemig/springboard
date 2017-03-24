@@ -11,3 +11,10 @@ data$company <- tolower(data$company)
 data <- separate(data,Product.code...number, into = c("product_code", "product_number"))
 #use the recode function to decode the category codes
 data$category <- recode(data$product_code,"'p'='smartphone';'v'='TV';'x'='Laptop';'q'='Tablet'")
+#convert the factors to chr before we can concatenate
+data$address <- as.character(data$address)
+data$city <- as.character(data$city)
+data$country <- as.character(data$country)
+#use the paste function
+data$full_address <- paste(data$address,data$city,data$country, sep = ",")
+
