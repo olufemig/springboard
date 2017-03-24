@@ -10,7 +10,7 @@ data$company <- tolower(data$company)
 # split the product code variable
 data <- separate(data,Product.code...number, into = c("product_code", "product_number"))
 #use the recode function to decode the category codes
-data$category <- recode(data$product_code,"'p'='smartphone';'v'='TV';'x'='Laptop';'q'='Tablet'")
+data$category <- recode(data$product_code,"'p'='smartphone';'v'='tv';'x'='laptop';'q'='tablet'")
 #convert the factors to chr before we can concatenate
 data$address <- as.character(data$address)
 data$city <- as.character(data$city)
@@ -18,6 +18,7 @@ data$country <- as.character(data$country)
 #use the paste function
 data$full_address <- paste(data$address,data$city,data$country, sep = ",")
 #create 4 new dummy company variables
+#would be nice to do this as a function
 data$company_philips <- recode(data$company,"'philips'= 1; else = 0")
 data$company_akso <- recode(data$company,"'akso'= 1; else = 0")
 data$company_van_houten <- recode(data$company,"'van_houten'= 1; else = 0")
@@ -27,6 +28,8 @@ data$category_smartphone <- recode(data$category,"'smartphone'= 1; else = 0")
 data$category_tv <- recode(data$category,"'tv'= 1; else = 0")
 data$category_laptop <- recode(data$category,"'laptop'= 1; else = 0")
 data$category_tablet <- recode(data$category,"'tablet'= 1; else = 0")
+#export to csv
+write.csv(data, "refine_clean.csv")
 
 
 
