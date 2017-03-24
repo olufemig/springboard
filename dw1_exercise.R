@@ -17,4 +17,19 @@ data$city <- as.character(data$city)
 data$country <- as.character(data$country)
 #use the paste function
 data$full_address <- paste(data$address,data$city,data$country, sep = ",")
+#create 4 new dummy company variables
+data$company_philips <- recode(data$company,"'philips'= 1; else = 0")
+data$company_akso <- recode(data$company,"'akso'= 1; else = 0")
+data$company_van_houten <- recode(data$company,"'van_houten'= 1; else = 0")
+data$company_unilever <- recode(data$company,"'unilever'= 1; else = 0")
+# create 4 new category dummy variables
+data$category_smartphone <- recode(data$category,"'smartphone'= 1; else = 0")
+data$category_tv <- recode(data$category,"'tv'= 1; else = 0")
+data$category_laptop <- recode(data$category,"'laptop'= 1; else = 0")
+data$category_tablet <- recode(data$category,"'tablet'= 1; else = 0")
+
+
+
+
+
 
