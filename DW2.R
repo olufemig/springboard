@@ -1,6 +1,6 @@
 library(dplyr)
 library(tidyr)
-library(Amelia)
+#library(Amelia)
 df.titanic <- read.csv("titanic3.csv",,na.strings=c("","na"))
 summary(df.titanic$embarked)
 # lookup all missing values in embarked column
@@ -10,7 +10,36 @@ df<-df.titanic
 df$embarked <- lapply(df$embarked,as.character)
 #update missing fields with S
 df$embarked[which(is.na(df$embarked))]<- "S"
-df2<-df
+df.final<-df
 #check if there are any nulls left
-df2.titanic[is.na(df.titanic$embarked),]
+df.final[is.na(df.titanic$embarked),]
 
+#age
+
+#check if age has nulls
+df.final[is.na(df2$age),]
+#input calculated mean into nulls
+df.final$age[which(is.na(df.final$age))] <- mean(df.final$age,na.rm = TRUE)
+#check if there are any nulls left behind
+df.final[is.na(df.final$age),]
+
+#lifeboat nulls
+
+#search for boat nulls
+df.final[is.na(df.titanic$boat),]
+df3<-df.final
+#convert boat variable to chr
+df3$boat <- lapply(df3$boat,as.character)
+#update missing fields with NA
+df3$boat[which(is.na(df3$boat))]<- "NA"
+#check if there are any nulls left
+df3[is.na(df3$boat),]
+
+
+#cabin
+
+df3$cabin <-lapply(df3$cabin, as.character)
+df3$has_cabin_number <- ifelse(df3$cabin == "NA", 0, 1)
+df.cabin<-df3
+df.cabin$has_cabin_number[which(is.na(df.cabin$has_cabin_number))] <- 0
+str(df.cabin)
