@@ -1,7 +1,6 @@
 library(dplyr)
 library(tidyr)
-#library(Amelia)
-df.titanic <- read.csv("titanic3.csv",,na.strings=c("","na"))
+df.titanic <- read.csv("titanic_original.csv",,na.strings=c("","na"))
 summary(df.titanic$embarked)
 # lookup all missing values in embarked column
 df.titanic[is.na(df.titanic$embarked),]
@@ -17,7 +16,7 @@ df.final[is.na(df.titanic$embarked),]
 #age
 
 #check if age has nulls
-df.final[is.na(df2$age),]
+df.final[is.na(df.final$age),]
 #input calculated mean into nulls
 df.final$age[which(is.na(df.final$age))] <- mean(df.final$age,na.rm = TRUE)
 #check if there are any nulls left behind
@@ -43,3 +42,5 @@ df3$has_cabin_number <- ifelse(df3$cabin == "NA", 0, 1)
 df.cabin<-df3
 df.cabin$has_cabin_number[which(is.na(df.cabin$has_cabin_number))] <- 0
 str(df.cabin)
+#export to csv
+write.csv(df.cabin, "titanic_clean.csv")
