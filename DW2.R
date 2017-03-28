@@ -1,6 +1,6 @@
 library(dplyr)
 library(tidyr)
-df.titanic <- read.csv("titanic_original.csv",,na.strings=c("","na"))
+df.titanic <- read.csv("titanic_original.csv",na.strings=c("","na"))
 summary(df.titanic$embarked)
 # lookup all missing values in embarked column
 df.titanic[is.na(df.titanic$embarked),]
@@ -43,4 +43,10 @@ df.cabin<-df3
 df.cabin$has_cabin_number[which(is.na(df.cabin$has_cabin_number))] <- 0
 str(df.cabin)
 #export to csv
-write.csv(df.cabin, "titanic_clean.csv")
+df.cabin = data.frame(df.cabin)
+head(df.cabin)
+str(df.cabin)
+#convert back to factors to avoid list error when spooling to csv
+df.cabin$boat <- lapply(df.cabin$boat,as.character)
+df.cabin$cabin <- lapply(df.cabin$cabin,as.character)
+write.csv(df.cabin,"titanic_clean.csv",row.names = FALSE)
