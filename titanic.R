@@ -1,4 +1,4 @@
-# titanic is avaliable in your workspace
+# titanic is available in your workspace
 str(titanic)
 # Check out the structure of titanic
 summary(titanic)
