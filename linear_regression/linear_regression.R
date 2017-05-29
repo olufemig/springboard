@@ -289,7 +289,7 @@ coef(summary(lm(csat ~ C(region, contr.helmert),
 ##      across the four regions?
 
 energy.mod3<-lm(energy~metro+toxic*green, data=states.data)
-summary(energy.mod3)
+summary(energy.mod3) 
 # 
 coef(summary(energy.mod3))
 
