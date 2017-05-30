@@ -7,7 +7,7 @@
 ##     • Perform model comparisons
 ##     • Run and interpret variety of regression models in R
 
-## Set working directory
+## Set working directory 
 ## ─────────────────────────
 
 ##   It is often helpful to start your R session by setting your working
